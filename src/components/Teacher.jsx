@@ -14,11 +14,11 @@ const Teacher = (props) => {
             />
         </a>
         <div className="p-5">
-            <a href="#">
+            
                 <h5 className="mb-2 text-2xl text-left font-bold tracking-tight text-gray-900 dark:text-white">
                     {props.name}
                 </h5>
-            </a>
+
             <hr/>
             <p className="mb-3 text-left font-normal text-gray-700 dark:text-gray-400">
                 <br/>

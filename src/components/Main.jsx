@@ -11,7 +11,7 @@ const Main = () => {
 
         <Helmet>
             <title> सुरताल - Home</title>
-            <link rel="shortcut icon" href="../images/PNG-image.svg" type="../images/PNG-image.svg"/>
+            <link rel="shortcut icon" href="../images/PNG-image.ico" type="../images/PNG-image.svg"/>
         </Helmet>
 
 
@@ -36,7 +36,7 @@ const Main = () => {
         <Teacher
         name="Monica Bhatia"
 firstQuality="Visharad in Vocal"
-            secondQuality="Attended over 25 programmes"
+            secondQuality="Attended and sung at over 25 programmes"
         />
 
         {/* second card*/}
@@ -47,7 +47,19 @@ name="Priytam Pratihar"
         />
       </span>
 
-       <h2></h2>
+       <h2 className={'text-3xl mt-10'}>From Classical Singing
+        
+           To Diploma Cources</h2>
+    
+        <h2 className={'text-3xl mt-3'}> We've got you covered!</h2>
+        <p className={'text-md mt-2 w-80 text-center mx-auto'}>
+            With our carefully-curated selection of cources, we are commited to deliver on our promises and provide you with the best service we can! <button 
+            type="button"
+            className="scale-75 text-gray-900  bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+            Click Here
+        </button> to learn more
+        </p>
     </div>
   );
 };
