@@ -1,5 +1,5 @@
 import logo from "../images/PNG-image.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "../App.css";
 import { Navbar as Header } from "flowbite-react";
 
@@ -10,16 +10,19 @@ const Navbar = () => {
     <div className="motion-safe:animate-Navbar">
       <div className="">
         <Header rounded={true} className="">
-          <Header.Brand href="/">
-            <img
-              src={logo}
-              className="h-6 mr-3 sm:h-9 text-white dark:invert ml-4"
-              alt="surtaal logo"
-            />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              सुरताल
-            </span>
-          </Header.Brand>
+          <Link to="/">
+            {" "}
+            <Header.Brand href="/">
+              <img
+                src={logo}
+                className="h-6 mr-3 sm:h-9 text-white dark:invert ml-4"
+                alt="surtaal logo"
+              />
+              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                सुरताल
+              </span>
+            </Header.Brand>
+          </Link>
           <Header.Toggle />
           <Header.Collapse>
             <ul className="navList flex flex-col  p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white md:dark:bg-transparent dark:bg-transparent dark:border-gray-700">

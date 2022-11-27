@@ -4,7 +4,7 @@ const Teacher = (props) => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="max-w-sm bg-white border mr-4 border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 motion-safe:animate-cards"
+      className="max-w-sm mb-16 bg-white border mr-4 border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 motion-safe:animate-cards"
     >
       <a href="#">
         <img

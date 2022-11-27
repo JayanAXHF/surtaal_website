@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="bottom-0 ">
       <footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
@@ -12,7 +19,7 @@ const Footer = () => {
           </Link>
           . All Rights Reserved.
         </span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+        <ul class="flex list-none flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
             <Link to="/courses" class="mr-4 hover:underline md:mr-6 ">
               Courses
@@ -29,9 +36,15 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to="/contact" class="hover:underline">
+            <Link to="/support" class="hover:underline">
               Contact
             </Link>
+          </li>
+
+          <li>
+            <button className="mx-5" onClick={scrollUp}>
+              Back to Top
+            </button>
           </li>
         </ul>
       </footer>

@@ -1,6 +1,6 @@
 import React from "react";
 import CourseCard from "../Card";
-
+import { Helmet } from "react-helmet";
 const Courses = () => {
   let classes = [
     {
@@ -63,6 +63,17 @@ const Courses = () => {
 
   return (
     <div className="w-screen h-full lg:h-screen">
+      {/*Title and tabbar*/}
+
+      <Helmet>
+        <title> सुरताल - Courses</title>
+        <link
+          rel="shortcut icon"
+          href="../images/PNG-image.ico"
+          type="../images/PNG-image.svg"
+        />
+      </Helmet>
+
       <h1 className="text-5xl dark:text-white text-center mt-20">
         We offer a variety of courses for people trying to learn music
       </h1>

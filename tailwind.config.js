@@ -5,11 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      animation: {
-        mainText: "fadeIn 1s ease-in forwards",
-        Navbar: "fadeIn 0.8s ease-in forwards",
-        cards: "fadeIn 1.5s ease-in forwards",
-      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0 },
@@ -20,7 +15,4 @@ module.exports = {
   },
   plugins: [require("flowbite/plugin")],
   darkMode: "media",
-  variants: {
-    animation: ["motion-safe"],
-  },
 };
