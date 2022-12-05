@@ -1,10 +1,41 @@
 import logo from "../images/PNG-image.svg";
+import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "../App.css";
-import { Navbar as Header } from "flowbite-react";
+import { Navbar as Header, Dropdown } from "flowbite-react";
+import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
 
 const Navbar = () => {
   const activeClass = "text-blue-700";
+
+  const [theme, setTheme] = useState(null);
+
+  useEffect(() => {
+    toggleTheme();
+  }, [theme]);
+
+  const toggleTheme = () => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+      setTheme(localStorage.theme);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setTheme(localStorage.theme);
+    }
+
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = "light";
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = "dark";
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem("theme");
+  };
 
   return (
     <div className="motion-safe:animate-Navbar">
@@ -30,7 +61,6 @@ const Navbar = () => {
                 <NavLink
                   exact
                   to="/"
-                  activeClassName="activeLink"
                   className={({ isActive }) =>
                     isActive
                       ? activeClass
@@ -46,7 +76,6 @@ const Navbar = () => {
                 <NavLink
                   exact
                   to="/courses"
-                  activeClassName="activeLink"
                   className={({ isActive }) =>
                     isActive
                       ? activeClass
@@ -72,6 +101,35 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
+            <span className="self-center">
+              <Dropdown label="Theme">
+                <Dropdown.Item
+                  onClick={() => {
+                    localStorage.removeItem("theme");
+                    toggleTheme();
+                  }}
+                >
+                  OS Preference
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  onClick={() => {
+                    localStorage.setItem("theme", "light");
+                    toggleTheme();
+                  }}
+                >
+                  Light
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    localStorage.setItem("theme", "dark");
+                    toggleTheme();
+                  }}
+                >
+                  Dark
+                </Dropdown.Item>
+              </Dropdown>
+            </span>
           </Header.Collapse>
         </Header>
       </div>

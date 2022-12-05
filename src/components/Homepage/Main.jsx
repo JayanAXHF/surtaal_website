@@ -3,10 +3,12 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Teacher from "../Teacher.jsx";
+import TeacherImg1 from "/Users/sunilchoudhary/Documents/Development/surtaal_website/src/images/MonicaBhatia.JPG";
+import TeacherImg2 from "/Users/sunilchoudhary/Documents/Development/surtaal_website/src/images/Priytam.jpg";
 
 const Main = () => {
   return (
-    <div className="text-center dark:text-white font-[karla]">
+    <div className="text-center dark:text-white font-[karla] mb-24">
       {/*Title and tabbar*/}
 
       <Helmet>
@@ -40,16 +42,15 @@ const Main = () => {
         </motion.button>
       </span>
 
-
-
       <h2 className="mt-10 font-[karla] font-medium text-3xl">
         Taught by Professionals
       </h2>
-      <span className="flex just justify-center  mt-10">
+      <span className="grid lg:grid-flow-col md:grid-flow-col sm:grid-flow-row w-full  justify-items-center justify-center gap-10  mt-10">
         <Teacher
           name="Monica Bhatia"
           firstQuality="Visharad in Vocal"
           secondQuality="Attended and sung at over 25 programmes"
+          image={TeacherImg1}
         />
 
         {/* second card*/}
@@ -57,6 +58,7 @@ const Main = () => {
           name="Priytam Pratihar"
           firstQuality="First Quality"
           secondQuality="Second Quality"
+          image={TeacherImg2}
         />
       </span>
     </div>

@@ -17,7 +17,7 @@ const ContactUs = () => {
 
       <h1 className="font-bold text-5xl">Support</h1>
       <h2 className="font-medium text-3xl ml-10 mt-5">Location</h2>
-      <p className="text-md ml-10">
+      <p className="text-md ml-14">
         B-23/1091,
         <br />
         Rangoli Gardens,
@@ -27,21 +27,37 @@ const ContactUs = () => {
         Jaipur - 302021
       </p>
       <h2 className="font-medium text-3xl ml-10 mt-5">Contact Us</h2>
-      <ul className="ml-10">
+      <ul className="ml-14">
         <li>
-          Monica Bhatia
+          <span className="m-0 dark:text-white text-xl">Monica Bhatia</span>
           <br />
-          Tel: +91 9799330625
-          <br />
-          E-mail: monicabhatia9@gmail.com
+          <p className="dark:text-gray-300 text-dark-600">
+            <a href="tel:9799330625"> Tel: +91 9799330625</a>
+            <br />
+            E-mail:{" "}
+            <a
+              href="mailto:monicabhatia9@gmail.com"
+              className="hover:text-white hover:decoration-solid"
+            >
+              monicabhatia9@gmail.com
+            </a>
+          </p>
         </li>
 
         <li>
-          Priytam Pratihar
+          <span className="m-0 dark:text-white text-xl">Priytam Pratihar</span>
           <br />
-          Tel: +91 ____________
-          <br />
-          E-mail: _____________
+          <p className="dark:text-gray-300 text-dark-600">
+            Tel: <a href="tel:9571371855">+91 9571371855</a>
+            <br />
+            E-mail:{" "}
+            <a
+              href="mailto:montypratihar1995@gmail.com"
+              className="hover:text-white hover:decoration-solid"
+            >
+              montypratihar1995@gmail.com
+            </a>
+          </p>
         </li>
       </ul>
     </div>

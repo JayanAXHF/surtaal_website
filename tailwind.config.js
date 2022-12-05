@@ -13,6 +13,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("flowbite/plugin")],
-  darkMode: "media",
+  plugins: [require("flowbite/plugin"), require("@tailwindcss/typography")],
+  darkMode: "class",
 };

@@ -8,13 +8,15 @@ import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
-    <div className="h-full w-full  dark:bg-gray-900 font-[karla]">
+    <div className="w-full dark:bg-gray-900 font-[karla]">
       <BrowserRouter>
         <Navbar />
-        <div className="h-full w-full  dark:bg-gray-900">
+        <div className="w-full  dark:bg-gray-900">
           <Routes>
             <Route path="/" element={<Main />} />
+
             <Route path="/courses" element={<Courses />} />
+
             <Route path="/support" element={<ContactUs />} />
           </Routes>
         </div>

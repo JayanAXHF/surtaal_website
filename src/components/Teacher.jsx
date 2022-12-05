@@ -4,12 +4,16 @@ const Teacher = (props) => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="max-w-sm mb-16 bg-white border mr-4 border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 motion-safe:animate-cards"
+      className="max-w-sm mb-16 w-max bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 motion-safe:animate-cards"
     >
-      <a href="#">
+      <a href="/">
         <img
           className="rounded-t-lg"
-          src="https://flowbite.com/docs/images/blog/image-1.jpg"
+          src={
+            props.image
+              ? props.image
+              : "https://www.flowbite.com/docs/images/blog/image-1.jpg"
+          }
           alt=""
         />
       </a>

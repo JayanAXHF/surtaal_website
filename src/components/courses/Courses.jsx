@@ -1,57 +1,54 @@
 import React from "react";
 import CourseCard from "../Card";
 import { Helmet } from "react-helmet";
+
 const Courses = () => {
   let classes = [
     {
       name: "Gwalior Gharana",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Diploma Courses",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Classical Singing",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Harmonium",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Guitar",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
-    {
-      name: "Gwalior Gharana",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
-    },
+
     {
       name: "Keyboard",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Tabla",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Bhajan",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
     {
       name: "Karaoke Singing",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
-      price: "____₹",
+      price: "____",
     },
   ];
 
@@ -62,7 +59,7 @@ const Courses = () => {
   });
 
   return (
-    <div className="w-screen h-full lg:h-screen">
+    <div className="w-screen h-full lg:h-screen  pb-[200px]">
       {/*Title and tabbar*/}
 
       <Helmet>
