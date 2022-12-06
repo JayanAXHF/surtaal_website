@@ -1,46 +1,23 @@
 import logo from "../images/PNG-image.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "../App.css";
-import { Navbar as Header, Dropdown } from "flowbite-react";
-import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
+import { Navbar as Header } from "flowbite-react";
+import Booking from "./Booking";
 
 const Navbar = () => {
   const activeClass = "text-blue-700";
 
-  const [theme, setTheme] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    toggleTheme();
-  }, [theme]);
-
-  const toggleTheme = () => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      setTheme(localStorage.theme);
-    } else {
-      document.documentElement.classList.remove("dark");
-      setTheme(localStorage.theme);
-    }
-
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = "light";
-
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = "dark";
-
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem("theme");
+  const handelClick = () => {
+    setShowModal(true);
   };
 
   return (
     <div className="motion-safe:animate-Navbar">
       <div className="">
-        <Header rounded={true} className="">
+        <Header rounded={true} fluid={true} className="">
           <Link to="/">
             {" "}
             <Header.Brand href="/">
@@ -56,7 +33,7 @@ const Navbar = () => {
           </Link>
           <Header.Toggle />
           <Header.Collapse>
-            <ul className="navList flex flex-col  p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white md:dark:bg-transparent dark:bg-transparent dark:border-gray-700">
+            <ul className="navList flex flex-col items-center  p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white md:dark:bg-transparent dark:bg-transparent dark:border-gray-700">
               <li>
                 <NavLink
                   exact
@@ -100,39 +77,17 @@ const Navbar = () => {
                   Support
                 </NavLink>
               </li>
+              <button
+                onClick={handelClick}
+                class="focus:outline-none m-0 self-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              >
+                Book Your Class
+              </button>
             </ul>
-            <span className="self-center">
-              <Dropdown label="Theme">
-                <Dropdown.Item
-                  onClick={() => {
-                    localStorage.removeItem("theme");
-                    toggleTheme();
-                  }}
-                >
-                  OS Preference
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item
-                  onClick={() => {
-                    localStorage.setItem("theme", "light");
-                    toggleTheme();
-                  }}
-                >
-                  Light
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    localStorage.setItem("theme", "dark");
-                    toggleTheme();
-                  }}
-                >
-                  Dark
-                </Dropdown.Item>
-              </Dropdown>
-            </span>
           </Header.Collapse>
         </Header>
       </div>
+      <Booking shown={showModal} />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Courses from "./components/courses/Courses";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
+import Booking from "./components/Booking";
 
 function App() {
   return (

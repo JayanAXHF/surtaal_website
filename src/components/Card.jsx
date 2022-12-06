@@ -15,9 +15,9 @@ const CourseCard = (props) => {
 
           <br />
           <p class="font-bold text-lg dark:text-white">
-            {props.price}₹
+            {props.price} ₹
             <sub>
-              / <sub>class</sub>
+              / <sub>month</sub>
             </sub>
           </p>
         </div>
