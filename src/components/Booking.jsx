@@ -5,15 +5,19 @@ import { classes } from "./courses/Courses";
 import { getDatabase, ref, set } from "firebase/database";
 import { nanoid } from "nanoid";
 import { db as app } from "../utils/firebase";
+import { useGlobalContext } from "../context/context";
+import Popup from "./Popup";
 
 import Confetti from "react-confetti";
 
-const Booking = (props) => {
+const Booking = () => {
   const [checked, setChecked] = useState(false);
   const [booked, setBooked] = useState(false);
   const [error, setError] = useState(false);
   const [running, setRunning] = useState(false);
-  const [shown, setShown] = useState(props.shown);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
   const [details, setDetails] = useState([
     {
       name: null,
@@ -28,6 +32,8 @@ const Booking = (props) => {
     },
   ]);
 
+  const { showModal, toggleModal, togglePopup, showAlert } = useGlobalContext();
+
   const classOptions = classes.map((course) => {
     return <option>{course.name}</option>;
   });
@@ -37,21 +43,59 @@ const Booking = (props) => {
       setRunning(true);
       setTimeout(() => {
         setRunning(false);
-      }, 1000);
+        setShowConfetti(false);
+      }, 7000);
     }
   }, [booked]);
+
+  const checkFilled = () => {
+    if (
+      details.name &&
+      details.mName &&
+      details.age &&
+      details.course &&
+      details.gender &&
+      details.fName
+    ) {
+      setDisabled(false);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const {
+      name,
+      fName,
+      mName,
+      age,
+
+      gender,
+
+      course,
+    } = details;
+
+    const det = { name, age, fName, mName, gender, course };
     const db = app;
 
     const id = nanoid();
 
-    await set(ref(db, "bookings/" + id), {
-      ...details,
-    });
-    setBooked(true);
+    let impDetails = { details };
+
+    if (!details.grade) {
+      delete impDetails.grade;
+    }
+
+    if (name) {
+      await set(ref(db, `bookings/${details.name}-${id}`), {
+        ...details,
+        id: id,
+      });
+      setBooked(true);
+      setShowConfetti(true);
+    } else {
+      togglePopup();
+    }
   };
 
   const handleChange = (e) => {
@@ -69,7 +113,7 @@ const Booking = (props) => {
 
   return (
     <div className="">
-      {!error && booked && (
+      {!error && booked && showConfetti && (
         <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
@@ -78,7 +122,7 @@ const Booking = (props) => {
           run={running}
         />
       )}
-      <Modal show={setShown} onClose={() => setShown(false)}>
+      <Modal show={showModal} onClose={toggleModal}>
         <Modal.Header>Join a class</Modal.Header>
         {!booked ? (
           <form className="space-y-6">
@@ -100,6 +144,8 @@ const Booking = (props) => {
                   onChange={handleChange}
                   name="name"
                   value={details.name}
+                  minLength={1}
+                  required
                 />
               </div>
               <div className="grid grid-flow-row grid-cols-2 gap-3">
@@ -119,7 +165,9 @@ const Booking = (props) => {
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={handleChange}
                     name="fName"
+                    minLength={1}
                     value={details.fName}
+                    required
                   />
                 </div>
                 <div class="mb-6">
@@ -138,7 +186,9 @@ const Booking = (props) => {
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={handleChange}
                     name="mName"
+                    minLength={1}
                     value={details.mName}
+                    required
                   />
                 </div>
               </div>
@@ -161,6 +211,7 @@ const Booking = (props) => {
                     onChange={handleChange}
                     name="age"
                     value={details.age}
+                    required
                   />
                 </div>
                 <div className="">
@@ -177,6 +228,7 @@ const Booking = (props) => {
                     onChange={handleChange}
                     name="gender"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+                    required
                   >
                     <option>Male</option>
                     <option>Female</option>
@@ -192,10 +244,10 @@ const Booking = (props) => {
                     htmlFor="base-input"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Grade{" "}
-                    <span className="">
+                    Grade (optional)
+                    {/* <span className="">
                       <sup className="text-sm text-red-500">*</sup>
-                    </span>
+                    </span> */}
                   </label>
                   <input
                     type="number"
@@ -212,10 +264,7 @@ const Booking = (props) => {
                     htmlFor="base-input"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    School{" "}
-                    <span className="">
-                      <sup className="text-sm text-red-500">*</sup>
-                    </span>
+                    School (optional){" "}
                   </label>
                   <input
                     type="text"
@@ -229,7 +278,7 @@ const Booking = (props) => {
               </div>
               <div>
                 <label
-                  htmlFor="countries"
+                  htmlFor="courses"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Course{" "}
@@ -238,10 +287,11 @@ const Booking = (props) => {
                   </span>
                 </label>
                 <select
-                  id="countries"
+                  id="courses"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   onChange={handleChange}
                   name="course"
+                  required
                 >
                   <option>-- Select a Course--</option>
                   {classOptions}
@@ -289,6 +339,7 @@ const Booking = (props) => {
           </div>
         )}
       </Modal>
+      <Popup />
     </div>
   );
 };
