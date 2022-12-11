@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
+import { getPerformance } from "firebase/performance";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -9,7 +10,7 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAQSY4H2uvUu97_sGHI5qAwjAyGbuxjWdY",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "surtaal-website.firebaseapp.com",
   databaseURL:
     "https://surtaal-website-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -26,3 +27,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);
+
+const perf = getPerformance(app);

@@ -3,7 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Teacher from "../Teacher.jsx";
-import TeacherImg1 from "/Users/sunilchoudhary/Documents/Development/surtaal_website/src/images/MonicaBhatia.JPG";
+import TeacherImg1 from "/Users/sunilchoudhary/Documents/Development/surtaal_website/src/images/MonicaBhatia.jpg";
 import TeacherImg2 from "/Users/sunilchoudhary/Documents/Development/surtaal_website/src/images/Priytam.jpg";
 
 const Main = () => {
@@ -50,15 +50,19 @@ const Main = () => {
           name="Monica Bhatia"
           firstQuality="Visharad in Vocal"
           secondQuality="Attended and sung at over 25 programmes"
+            thirdQuality='Knows the Harmonium'
           image={TeacherImg1}
         />
 
         {/* second card*/}
         <Teacher
           name="Priytam Pratihar"
-          firstQuality="First Quality"
-          secondQuality="Second Quality"
+          firstQuality="Academic and College teacher."
+            thirdQuality={`Knows:
+            `}
           image={TeacherImg2}
+            secondQuality={'Alankaar complete.'}
+            fourthQuality='    Harmonium | keyboard | guitar | tabla | cazon | ukulele and more.'
         />
       </span>
     </div>

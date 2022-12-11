@@ -2,15 +2,23 @@ import React from "react";
 import CourseCard from "../Card";
 import { Helmet } from "react-helmet";
 
+const diplomaDesc =
+  "(Exam and Practical fee 4000) Starting from:\nGrade 1 prarumbhik\nGrade 2 praveshika pratam\nGrade 3 praveshika puuren\nGrade 4 madhyama pratam \n Grade 5 madhayam purren\nVisharad pratam\nVisharad purren\nAlankaar purren\nAlankaar purren";
+
 export const classes = [
   {
     name: "Gwalior Gharana",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
+    desc: "The Gwalior Gharana is the oldest Gharana of Hindustani classical music.This gharana is the most famous gharana of Khayal singing. In this gharana, the initial note is made open and loud in the form of aakar.  ",
     price: 2000,
   },
   {
     name: "Diploma Courses",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
+    desc:
+      "(Exam and Practical fee 4000) Starting from" +
+      " | " +
+      "Grade 1 prarumbhik" +
+      " | " +
+      "Grade 2 praveshika pratam | Grade 3 praveshika puuren | Grade 4 madhyama pratam | Grade 5 madhayam purren | Visharad pratam | Visharad purren | Alankaar purren | Alankaar purren",
     price: 3000,
   },
   {
@@ -20,18 +28,18 @@ export const classes = [
   },
   {
     name: "Harmonium",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
+    desc: "Starting from the Alankaar Taan-Palte, Variety of Taan, Gamak, Mheed etc; Bollywood Playing | Classical Playing | Versatile Playing | Performer Playing",
     price: 2000,
   },
   {
     name: "Guitar",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
+    desc: "Basic Guitar Course | Intermediate Course | Advance Course; Streaming Pattern | Code Pattern | Tab; Reading Finger Pattern | Plugging Pattern Bollywood; Playing Classical | Playing Versatile | Playing Performer Playing",
     price: 2000,
   },
 
   {
     name: "Keyboard",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec imperdiet diam. Pellentesque sem ligula, tincidunt at hendrerit eu, viverra eu velit. Quisque est nisi, mollis id enim vel, imperdiet.",
+    desc: "Basic keyboard course | Intermediate keyboard course | Advance keyboard course; Left & Right Hand Use | Code pattern | Book Reading | Versatile playing; Bollywood Playing  | Classical Playing  | Versatile Playing | Perfomer Playing ",
     price: 2000,
   },
   {

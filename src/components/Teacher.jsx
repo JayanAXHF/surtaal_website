@@ -31,9 +31,12 @@ const Teacher = (props) => {
             Qualifications:
           </h2>
           <br />
-          <ul>
+          <ul className="list-none">
             <li>{props.firstQuality}</li>
-            <li>{props.secondQuality}</li>
+              <li>{props.secondQuality}</li>
+              <li>{props.thirdQuality}</li>
+              <li>{props.fourthQuality}</li>
+
           </ul>
         </p>
       </div>

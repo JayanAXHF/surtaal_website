@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Modal, Button } from "flowbite-react";
 import { classes } from "./courses/Courses";
 import { getDatabase, ref, set } from "firebase/database";
-import { nanoid } from "nanoid";
+import { nanoid } from "../index.js";
+import {nanoid as idCreater} from 'nanoid'
 import { db as app } from "../utils/firebase";
 import { useGlobalContext } from "../context/context";
 import Popup from "./Popup";
@@ -17,7 +18,7 @@ const Booking = () => {
   const [running, setRunning] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [disabled, setDisabled] = useState(true);
-
+  const [bookingId, setBookingId] = useState(null)
   const [details, setDetails] = useState([
     {
       name: null,
@@ -29,10 +30,14 @@ const Booking = () => {
       school: null,
       course: null,
       hInstru: false,
+      tel: null,
+      done: false,
+        bookingId:null
     },
   ]);
 
   const { showModal, toggleModal, togglePopup, showAlert } = useGlobalContext();
+
 
   const classOptions = classes.map((course) => {
     return <option>{course.name}</option>;
@@ -62,37 +67,39 @@ const Booking = () => {
   };
 
   const handleSubmit = async (event) => {
+
+
     event.preventDefault();
 
-    const {
-      name,
-      fName,
-      mName,
-      age,
 
-      gender,
 
-      course,
-    } = details;
 
-    const det = { name, age, fName, mName, gender, course };
     const db = app;
 
-    const id = nanoid();
+    const id = idCreater();
+   const nanid = parseInt(nanoid())
+      const date = new Date();
+   const day = date.getDate();   const month = date.getMonth() +1;
+const year = date.getFullYear()
 
-    let impDetails = { details };
+      const currentDate = `${day}-${month}-${year}`
 
-    if (!details.grade) {
-      delete impDetails.grade;
-    }
+   setBookingId(nanid)
+console.log(id)
 
-    if (name) {
-      await set(ref(db, `bookings/${details.name}-${id}`), {
-        ...details,
-        id: id,
-      });
-      setBooked(true);
-      setShowConfetti(true);
+    if (details.name) {
+      try {
+        await set(ref(db, `bookings/${id}`), {
+          ...details,
+          id: id,
+            bId: nanid,
+            date:currentDate
+        });
+        setBooked(true);
+        setShowConfetti(true);
+      } catch (err) {
+        alert(`Error: ${err.message} \nPlease try again later`);
+      }
     } else {
       togglePopup();
     }
@@ -100,15 +107,19 @@ const Booking = () => {
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-    if (type !== "checkbox") {
-      setDetails({ ...details, [name]: value });
-      // console.log(details);
-    } else {
+    // if (type !== "checkbox") {
+    setDetails({ ...details, [name]: value });
+    if (type === "checkbox") {
       setChecked((prevState) => {
         return !prevState;
       });
-      setDetails({ ...details, hInstru: checked });
     }
+    console.log(value);
+    // // } else {
+    // setDetails({ ...details, hInstru: value });
+    // console.log(value);
+    //
+    // }
   };
 
   return (
@@ -154,7 +165,7 @@ const Booking = () => {
                     htmlFor="base-input"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Father's name{" "}
+                    Father/Husband's name{" "}
                     <span className="">
                       <sup className="text-sm text-red-500">*</sup>
                     </span>
@@ -175,7 +186,7 @@ const Booking = () => {
                     htmlFor="base-input"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Mother's Name{" "}
+                    Mother/Wife's Name{" "}
                     <span className="">
                       <sup className="text-sm text-red-500">*</sup>
                     </span>
@@ -192,6 +203,27 @@ const Booking = () => {
                   />
                 </div>
               </div>
+              <div class="mb-6">
+                <label
+                  for="base-input"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Mobile Number{" "}
+                  <span className="text-red-500">
+                    <sup>*</sup>
+                  </span>
+                </label>
+                <input
+                  type="tel"
+                  id="base-input"
+                  name="tel"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={handleChange}
+                  required
+                    minLength={10}
+                    maxLength={10}
+                />
+              </div>
               <div className="grid grid-flow-row grid-cols-2 gap-3 w-full">
                 <div class="mb-6">
                   <label
@@ -206,7 +238,7 @@ const Booking = () => {
                   <input
                     type="number"
                     id="base-input"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[1fr] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg lg:w-[1fr] focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     min={6}
                     onChange={handleChange}
                     name="age"
@@ -245,15 +277,14 @@ const Booking = () => {
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Grade (optional)
-                    {/* <span className="">
-                      <sup className="text-sm text-red-500">*</sup>
-                    </span> */}
+
                   </label>
                   <input
                     type="number"
                     id="base-input"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[1fr] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block lg:w-[1fr] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-32"
                     min={1}
+                      max={12}
                     onChange={handleChange}
                     name="grade"
                     value={details.grade}
@@ -293,7 +324,7 @@ const Booking = () => {
                   name="course"
                   required
                 >
-                  <option>-- Select a Course--</option>
+                    <option  disabled selected hidden>-- Select a Course--</option>
                   {classOptions}
                 </select>
               </div>
@@ -330,12 +361,16 @@ const Booking = () => {
             </Modal.Footer>
           </form>
         ) : (
-          <div className="h-96 flex justify-center items-center font-[karla]">
-            <h1 className="dark:text-white text-5xl text-center ">
+          <div className="h-96 flex flex-col justify-center  font-[karla]">
+            <h1 className="dark:text-white text-5xl text-center w-full">
               {error
                 ? "An error occurred. Please try again later."
-                : "Booking successful!"}
+              :       `Booking successful`        }
             </h1>
+<br/>
+              <br/>
+
+              <h2 className={'text-center dark:text-white text-3xl'}>Booking Id: {bookingId}</h2>
           </div>
         )}
       </Modal>

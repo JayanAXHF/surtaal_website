@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/context";
+import { customAlphabet} from "nanoid";
+
+export const nanoid = customAlphabet('1234567890', 10)
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

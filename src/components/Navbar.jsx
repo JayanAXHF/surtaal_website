@@ -1,11 +1,11 @@
 import logo from "../images/PNG-image.svg";
-import { useState } from "react";
+
 import { NavLink, Link } from "react-router-dom";
 import "../App.css";
 import { Navbar as Header } from "flowbite-react";
 import Booking from "./Booking";
 import { useGlobalContext } from "../context/context";
-import Popup from "./Popup";
+
 
 const Navbar = () => {
   const activeClass = "text-blue-700";
@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div className="motion-safe:animate-Navbar z-auto">
       <div className="">
-        <Header rounded={true} fluid={true} className="">
+        <Header rounded={true} fluid={false} className="">
           <Link to="/">
             {" "}
             <Header.Brand href="/">
@@ -67,7 +67,7 @@ const Navbar = () => {
                   to="/support"
                   className={({ isActive }) =>
                     isActive
-                      ? activeClass
+                      ? `${activeClass}`
                       : `
                   block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:bg-gray-100 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`
                   }
@@ -77,7 +77,7 @@ const Navbar = () => {
               </li>
               <button
                 onClick={toggleModal}
-                class="focus:outline-none m-0 self-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                class="focus:outline-none mr-4 self-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               >
                 Book Your Class
               </button>
