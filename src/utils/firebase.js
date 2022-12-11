@@ -13,14 +13,13 @@ const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "surtaal-website.firebaseapp.com",
   databaseURL:
-    "https://surtaal-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+    process.env.REACT_APP_DB_URL,
   projectId: "surtaal-website",
   storageBucket: "surtaal-website.appspot.com",
   messagingSenderId: "273515420192",
   appId: "1:273515420192:web:c5e0384806a87682fefa45",
   measurementId: "G-3V9TZXWCQK",
-  databaseURL:
-    "https://surtaal-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+
 };
 
 // Initialize Firebase
