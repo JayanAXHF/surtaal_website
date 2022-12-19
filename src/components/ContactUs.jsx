@@ -37,9 +37,9 @@ const ContactUs = () => {
             E-mail:{" "}
             <a
               href="mailto:monicabhatia9@gmail.com"
-              className="hover:text-white hover:decoration-solid"
+              className="dark:hover:text-white hover:decoration-solid"
             >
-              monicabhatia9@gmail.com
+              monica@surtaal.net
             </a>
           </p>
         </li>
@@ -53,7 +53,7 @@ const ContactUs = () => {
             E-mail:{" "}
             <a
               href="mailto:montypratihar1995@gmail.com"
-              className="hover:text-white hover:decoration-solid"
+              className="dark:hover:text-white hover:decoration-solid"
             >
               montypratihar1995@gmail.com
             </a>

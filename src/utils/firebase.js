@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 import { getDatabase } from "firebase/database";
 import { getPerformance } from "firebase/performance";
 
@@ -12,14 +12,12 @@ import { getPerformance } from "firebase/performance";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "surtaal-website.firebaseapp.com",
-  databaseURL:
-    process.env.REACT_APP_DB_URL,
+  databaseURL: process.env.REACT_APP_DB_URL,
   projectId: "surtaal-website",
   storageBucket: "surtaal-website.appspot.com",
   messagingSenderId: "273515420192",
   appId: "1:273515420192:web:c5e0384806a87682fefa45",
   measurementId: "G-3V9TZXWCQK",
-
 };
 
 // Initialize Firebase
@@ -27,4 +25,4 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);
 
-const perf = getPerformance(app);
+export const perf = getPerformance(app);
