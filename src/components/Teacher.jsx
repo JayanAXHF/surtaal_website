@@ -23,7 +23,7 @@ const Teacher = (props) => {
         </h5>
 
         <hr />
-        <p className="mb-3 text-left font-normal text-gray-700 dark:text-gray-400">
+        <div className="mb-3 text-left font-normal text-gray-700 dark:text-gray-400">
           <br />
 
           <h2 className="text-lg font-medium dark:text-white">
@@ -33,12 +33,11 @@ const Teacher = (props) => {
           <br />
           <ul className="list-none">
             <li>{props.firstQuality}</li>
-              <li>{props.secondQuality}</li>
-              <li>{props.thirdQuality}</li>
-              <li>{props.fourthQuality}</li>
-
+            <li>{props.secondQuality}</li>
+            <li>{props.thirdQuality}</li>
+            <li>{props.fourthQuality}</li>
           </ul>
-        </p>
+        </div>
       </div>
     </motion.div>
   );

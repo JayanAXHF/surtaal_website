@@ -7,9 +7,10 @@ import Teacher from "../Teacher.jsx";
 import TeacherImg1 from "/Users/sunilchoudhary/Documents/Development/surtaal/surtaal_website/src/images/MonicaBhatia.jpg";
 import TeacherImg2 from "/Users/sunilchoudhary/Documents/Development/surtaal/surtaal_website/src/images/Priytam.jpg";
 import "../../App.css";
+import FindBooking from "../modals/FindBooking.jsx";
 
 const Main = () => {
-  const { toggleModal } = useGlobalContext();
+  const { toggleModal, showFindBooking } = useGlobalContext();
 
   return (
     <div className="text-center dark:text-white font-[karla] mb-24">
@@ -110,10 +111,9 @@ const Main = () => {
         <br />
         <iframe
           src="https://www.youtube.com/embed/7E5r-_I75jU"
-          className="aspect-video w-video px-10 md:scale-60"
-          frameborder="1"
+          className="aspect-video w-video px-10 md:scale-60 mb-16"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
           title="surtaal-music-student-vid"
         ></iframe>
       </div>

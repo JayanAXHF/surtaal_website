@@ -5,12 +5,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Courses from "./components/courses/Courses";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
-// import Booking from "./components/Booking";
-import Popup from "./components/Popup";
+import { useGlobalContext } from "./context/context";
+import FindBooking from "./components/modals/FindBooking";
 
 function App() {
+  const { showFindBooking } = useGlobalContext();
+
   return (
-    <div className="w-full dark:bg-gray-900 font-[karla]">
+    <div className="w-full dark:bg-gray-900 font-[karla] grid">
       <BrowserRouter>
         <Navbar />
 

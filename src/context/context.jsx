@@ -6,12 +6,36 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [availableClasses, setAvailableClasses] = useState([]);
+  const [bookings, setBookings] = useState([]);
+  const [showFindBooking, setShowFindBooking] = useState(false);
 
+  const databaseBookings = ref(db, "bookings/");
   const databaseClasses = ref(db, "classes/");
   useEffect(() => {
     onValue(databaseClasses, (snapshot) => {
       const data = snapshot.val();
       setAvailableClasses(data);
+    });
+  }, []);
+
+  const toggleFindBookings = () => {
+    setShowFindBooking((prevState) => {
+      return !prevState;
+    });
+  };
+
+  useEffect(() => {
+    onValue(databaseBookings, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const formattedData = Object.keys(data).map((key) => {
+          return data[key];
+        });
+
+        const res = formattedData.find((x) => x.bId === 7122921590)?.id; // No error!
+
+        setBookings(formattedData);
+      }
     });
   }, []);
 
@@ -38,6 +62,9 @@ const AppProvider = ({ children }) => {
         showAlert,
         togglePopup,
         availableClasses,
+        showFindBooking,
+        toggleFindBookings,
+        bookings,
       }}
     >
       {children}

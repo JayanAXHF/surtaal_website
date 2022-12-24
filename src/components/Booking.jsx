@@ -76,7 +76,7 @@ const Booking = () => {
           date: currentDate,
           hInstru: checked,
           age: parseInt(details.age),
-            classDates : []
+          classDates: [""],
         });
         setBooked(true);
         setShowConfetti(true);
