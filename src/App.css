@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=VT323&display=swap'); 
 
-.w-video{
-    width : 85vw;
-    aspect-ratio: 16/9;
-}
+
+
 
 
 @media (prefers-color-scheme: dark) {
@@ -24,5 +22,14 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+
+}
+
+
+@media (prefers-color-scheme: dark){
+    a:hover [file= 'ContactUs']
+    {
+    color:white
+    }
 
 }

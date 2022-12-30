@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/material": "^5.11.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build \nfirebase deploy --only hosting:surtaal"
+    "deploy": "npm run build \nfirebase deploy --only hosting:surtaal",
+    "both": "npm run build \nfirebase deploy --only hosting:surtaal\ncd ../surtaal-admin\nnpm run deploy\ncd ../surtaal_website"
   },
   "eslintConfig": {
     "extends": [

@@ -1,9 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-
+import "../App.css";
 const ContactUs = () => {
   return (
-    <div className="w-screen h-full lg:h-screen dark:text-white ml-8 mt-8">
+    <div className="w-screen scale-95 md:scale-100 h-full dark:hover:prose-a:text-white hover:prose-a:text-gray-800 lg:h-screen dark:text-white ml-8 mt-8">
       {/*Title and tabbar*/}
 
       <Helmet>
@@ -31,13 +31,17 @@ const ContactUs = () => {
         <li>
           <span className="m-0 dark:text-white text-xl">Monica Bhatia</span>
           <br />
-          <p className="dark:text-gray-300 text-dark-600">
-            <a href="tel:9799330625"> Tel: +91 9799330625</a>
+          <p className="dark:text-gray-300 text-gray-600 ml-5">
+            <a href="tel:9799330625" file="Contactus">
+              {" "}
+              Tel: +91 9799330625
+            </a>
             <br />
             E-mail:{" "}
             <a
               href="mailto:monicabhatia9@gmail.com"
               className="dark:hover:text-white hover:decoration-solid"
+              file="Contactus"
             >
               monica@surtaal.net
             </a>
@@ -47,19 +51,24 @@ const ContactUs = () => {
         <li>
           <span className="m-0 dark:text-white text-xl">Priytam Pratihar</span>
           <br />
-          <p className="dark:text-gray-300 text-dark-600">
-            Tel: <a href="tel:9571371855">+91 9571371855</a>
+          <p className="dark:text-gray-300 text-dark-600 ml-5">
+            Tel:{" "}
+            <a href="tel:9571371855" file="ContactUs">
+              +91 9571371855
+            </a>
             <br />
             E-mail:{" "}
             <a
               href="mailto:montypratihar1995@gmail.com"
               className="dark:hover:text-white hover:decoration-solid"
+              file="Contactus"
             >
               montypratihar1995@gmail.com
             </a>
           </p>
         </li>
       </ul>
+      <br />
     </div>
   );
 };

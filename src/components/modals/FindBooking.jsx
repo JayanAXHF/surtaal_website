@@ -1,14 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/context";
-import { Tooltip } from "flowbite-react";
-
+import Tooltip from "@mui/material/Tooltip";
+import { Backdrop } from "@mui/material";
+import { Alert_error } from "../Reusables";
+import Zoom from "@mui/material/Zoom";
 const FindBooking = () => {
-  const { toggleFindBookings, bookings } = useGlobalContext();
+  const { toggleFindBookings, bookings, showFindBooking } = useGlobalContext();
 
-  const [bId, setBId] = useState("");
+  const [bId, setBId] = useState(null);
   const [foundBooking, setFoundBooking] = useState(false);
   const [searchedBooking, setSearchedBooking] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [notFilled, setNotFilled] = useState(false);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -17,11 +21,21 @@ const FindBooking = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log(bId.length);
     e.preventDefault();
-    if (bId && bId.length === 10) {
+    if (bId.length === 10) {
+      setNotFilled(false);
       const res = bookings.find((x) => x.bId === Number(bId));
-      setSearchedBooking(res);
-      setFoundBooking(true);
+      if (res) {
+        setSearchedBooking(res);
+        setFoundBooking(true);
+      } else {
+        setErrorMessage("Booking Not Found");
+        setNotFilled(true);
+      }
+    } else {
+      setErrorMessage("Invalid Booking Id");
+      setNotFilled(true);
     }
   };
   function reverseString(str) {
@@ -30,36 +44,42 @@ const FindBooking = () => {
 
   let dateList;
 
-  if (searchedBooking.classDates) {
-    dateList = searchedBooking.classDates.map((date, index) => {
-      const dte = new Date(reverseString(date));
+  if (searchedBooking?.classDates) {
+    dateList = (
+      <ol className="list-[upper-roman] list-inside">
+        {searchedBooking.classDates.map((date, index) => {
+          const dte = new Date(reverseString(date));
 
-      const currentDate = new Date();
-      var diff_time = dte.getTime() - currentDate.getTime();
+          const currentDate = new Date();
+          var diff_time = dte.getTime() - currentDate.getTime();
 
-      let TotalDays = Math.ceil(diff_time / (1000 * 3600 * 24));
+          let TotalDays = Math.ceil(diff_time / (1000 * 3600 * 24));
 
-      if (TotalDays > 0) {
-        return (
-          <li className="text-xl list-item" key={index}>
-            {date}
-          </li>
-        );
-      }
-    });
+          if (TotalDays > 0) {
+            return (
+              <li className="text-xl list-item" key={index}>
+                {date}
+              </li>
+            );
+          }
+        })}
+      </ol>
+    );
   } else {
     dateList = (
-      <li className="w-full text-center">There are no scheduled classes</li>
+      <h4 className="w-full text-center text-xl">
+        There are no scheduled classes
+      </h4>
     );
   }
 
   return (
-    <div className="fixed overscroll-none m-0 p-0  z-10 h-screen w-screen grid justify-center justify-items-center items-center content-center">
+    <Backdrop sx={{ zIndex: 1 }} open={showFindBooking}>
       <div
         id="defaultModal"
-        className="  overscroll-none object-center w-full p-4 overflow-x-hidden overflow-y-auto   h-max md:h-full"
+        className="overscroll-none w-full md:w-max overflow-x-hidden overflow-y-auto   h-max md:h-full"
       >
-        <div className="relative w-full h-full  md:h-auto">
+        <div className="relative w-full h-full p-14  md:h-auto">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -69,7 +89,10 @@ const FindBooking = () => {
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-toggle="defaultModal"
-                onClick={toggleFindBookings}
+                onClick={() => {
+                  toggleFindBookings();
+                  setNotFilled(false);
+                }}
               >
                 <svg
                   aria-hidden="true"
@@ -87,10 +110,10 @@ const FindBooking = () => {
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
-
             {!foundBooking ? (
               <form action="">
                 <div className="p-14 space-y-6">
+                  {notFilled && <Alert_error val={errorMessage} />}
                   <div className="mb-6">
                     <label
                       for="bookingId"
@@ -98,8 +121,11 @@ const FindBooking = () => {
                     >
                       Booking Id
                       <Tooltip
-                        content="Your Booking Id is a unique, 10-digit identifier for your booking that is given to you after the booking is done."
-                        style="light"
+                        title="Your Booking Id is a unique, 10-digit identifier for your booking that is given to you after booking."
+                        TransitionComponent={Zoom}
+                        arrow
+                        placement="top"
+                        sx={{ fontSize: 18 }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +152,7 @@ const FindBooking = () => {
                     />
                   </div>
                 </div>
+
                 <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                   <button
                     type="submit"
@@ -142,32 +169,31 @@ const FindBooking = () => {
                 <br />
                 <ul className="grid text-xl lg:grid-cols-2 gap-x-6 grid-flow-row">
                   <li>Name: {searchedBooking["name"]}</li>
-                  <li>Age: {searchedBooking.age} years</li>
-                  <li>Tel: {searchedBooking.tel}</li>
-                  <li>Mother: {searchedBooking.mName}</li>
-
-                  <li>Father: {searchedBooking.fName}</li>
+                  <li>Age: {searchedBooking?.age} years</li>
+                  <li>Tel: {searchedBooking?.tel}</li>
+                  <li>Mother: {searchedBooking?.mName}</li>
+                  <li>Father: {searchedBooking?.fName}</li>
                   <li>
                     School:{" "}
-                    {searchedBooking.school ? searchedBooking.school : "N/A"}
+                    {searchedBooking?.school ? searchedBooking.school : "N/A"}
                   </li>
                   <li>
                     Grade:{" "}
-                    {searchedBooking.grade ? searchedBooking.grade : "N/A"}
+                    {searchedBooking?.grade ? searchedBooking.grade : "N/A"}
                   </li>
-
-                  <li className="w-max">Booking Id: {searchedBooking.bId}</li>
+                  <li className="w-max">Booking Id: {searchedBooking?.bId}</li>
                 </ul>
                 <br />
                 <h2 className="text-3xl">Upcoming Classes:</h2>
+                <br />
 
-                <ol className="list-[upper-roman] list-inside ">{dateList}</ol>
+                {dateList}
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </Backdrop>
   );
 };
 

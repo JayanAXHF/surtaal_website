@@ -6,15 +6,27 @@ import { useGlobalContext } from "../../context/context.jsx";
 import Teacher from "../Teacher.jsx";
 import TeacherImg1 from "/Users/sunilchoudhary/Documents/Development/surtaal/surtaal_website/src/images/MonicaBhatia.jpg";
 import TeacherImg2 from "/Users/sunilchoudhary/Documents/Development/surtaal/surtaal_website/src/images/Priytam.jpg";
-import "../../App.css";
+
 import FindBooking from "../modals/FindBooking.jsx";
 
 const Main = () => {
   const { toggleModal, showFindBooking } = useGlobalContext();
+  const teacher1Qualities = [
+    "Visharad in Vocal",
+    "Attended and sung at over 25 programmes",
+    "Knows the Harmonium",
+  ];
+
+  const teacher2 = [
+    "Academic and College teacher.",
+    "Alankaar complete.",
+
+    "Knows: Harmonium | keyboard | guitar | tabla | cazon | ukulele and more.",
+  ];
 
   return (
-    <div className="text-center dark:text-white font-[karla] mb-24">
-      {/*Title and tabbar*/}
+    <div className="text-center dark:text-white font-[karla] mb-48  md:p-0">
+      {/*Head Tag Nonsense*/}
 
       <Helmet>
         <title> सुरताल - Home</title>
@@ -25,7 +37,7 @@ const Main = () => {
         />
       </Helmet>
 
-      <div>
+      <div className=" scale-90 md:scale-100">
         <div>
           <h1 className="text-center mt-[200px] dark:text-white text-7xl font-[karla] font-bold motion-safe:animate-mainText">
             Music Classes for all Ages
@@ -65,21 +77,15 @@ const Main = () => {
       <span className="grid lg:grid-flow-col md:grid-flow-col sm:grid-flow-row w-full  justify-items-center justify-center gap-10  mt-10">
         <Teacher
           name="Monica Bhatia"
-          firstQuality="Visharad in Vocal"
-          secondQuality="Attended and sung at over 25 programmes"
-          thirdQuality="Knows the Harmonium"
+          qualities={teacher1Qualities}
           image={TeacherImg1}
         />
-
         {/* second card*/}
+
         <Teacher
           name="Priytam Pratihar"
-          firstQuality="Academic and College teacher."
-          thirdQuality={`Knows:
-            `}
+          qualities={teacher2}
           image={TeacherImg2}
-          secondQuality={"Alankaar complete."}
-          fourthQuality="    Harmonium | keyboard | guitar | tabla | cazon | ukulele and more."
         />
       </span>
 
@@ -111,7 +117,7 @@ const Main = () => {
         <br />
         <iframe
           src="https://www.youtube.com/embed/7E5r-_I75jU"
-          className="aspect-video w-video px-10 md:scale-60 mb-16"
+          className=" aspect-video w-[65vw] mb-16 rounded-3xl"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="surtaal-music-student-vid"

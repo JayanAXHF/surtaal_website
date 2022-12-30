@@ -15,7 +15,7 @@ const Courses = () => {
   });
 
   return (
-    <div className="w-screen h-full lg:h-screen grid  justify-center  pb-[200px]">
+    <div className="w-screen h-full scale-95 md:scale-100   lg:h-screen grid grid-flow-row  justify-center justify-items-center  pb-14">
       {/*Title and tabbar*/}
 
       <Helmet>
@@ -30,11 +30,14 @@ const Courses = () => {
       <h1 className="text-5xl dark:text-white text-center mt-20">
         We offer a variety of courses for people trying to learn music
       </h1>
-      <h5 className="text-xl dark:text-white text-center mt-10">
-        Note: Admission Fees: ₹200/- <br /> Separate Meeting : ₹500/- <br /> #
-        Classes in a month : 12 | # Classes in a week : 3
+      <h5 className="text-xl dark:text-white text-center gap-3 grid mt-10 grid-flow-row justify-items-center  justify-center">
+        <ul className="ml-3 list-square  text-left p-2 md:p-0">
+          <b className="">NOTE: </b>
+          <li>Admission Fees: ₹200/-</li> <li>Separate Meeting : ₹500/-</li>
+          <li># Classes in a month : 12 | # Classes in a week : 3</li>
+        </ul>
       </h5>
-      <div className="mt-10  flex gap-2 flex-wrap justify-center pb-24 ">
+      <div className="mt-10 p10  flex  gap-2 flex-wrap justify-center justify-items-start pb-24 ">
         {courseCards}
       </div>
     </div>

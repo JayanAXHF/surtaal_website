@@ -6,6 +6,8 @@ import { Navbar as Header } from "flowbite-react";
 import Booking from "./Booking";
 import { useGlobalContext } from "../context/context";
 import FindBooking from "./modals/FindBooking";
+import { ButtonGroup } from "@mui/material";
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const activeClass = "text-blue-700 m-0";
@@ -77,18 +79,14 @@ const Navbar = () => {
                   Support
                 </NavLink>
               </li>
-              <button
-                onClick={toggleModal}
-                className="focus:outline-none mr-4 self-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-              >
-                Book Your Class
-              </button>
-              <button
-                onClick={toggleFindBookings}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Find Booking
-              </button>
+              <ButtonGroup variant="outlined">
+                <Button color="success" onClick={toggleModal}>
+                  Book Your Class
+                </Button>
+                <Button onClick={toggleFindBookings} color="primary">
+                  Find Booking
+                </Button>
+              </ButtonGroup>
             </ul>
           </Header.Collapse>
         </Header>
