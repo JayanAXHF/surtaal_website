@@ -10,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="w-full absolute bottom-0">
+    <div className="w-screen fixed  bottom-0">
       <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2022{" "}
@@ -26,13 +26,16 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" className="mr-4 hover:underline md:mr-6">
+            <Link
+              to="/support/privacy"
+              className="mr-4 hover:underline md:mr-6"
+            >
               Privacy Policy
             </Link>
           </li>
           <li>
-            <Link to="/" className="mr-4 hover:underline md:mr-6">
-              Licensing
+            <Link to="/support/tos" className="mr-4 hover:underline md:mr-6">
+              Terms of Service
             </Link>
           </li>
           <li>

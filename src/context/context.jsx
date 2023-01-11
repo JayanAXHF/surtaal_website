@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { ref, onValue } from "firebase/database";
 import { db } from "../utils/firebase";
+import React from "react";
 
 const AppContext = createContext();
 
@@ -16,6 +17,7 @@ const AppProvider = ({ children }) => {
       const data = snapshot.val();
       setAvailableClasses(data);
     });
+    // eslint-disable-next-line
   }, []);
 
   const toggleFindBookings = () => {
@@ -32,11 +34,10 @@ const AppProvider = ({ children }) => {
           return data[key];
         });
 
-        const res = formattedData.find((x) => x.bId === 7122921590)?.id; // No error!
-
         setBookings(formattedData);
       }
     });
+    //eslint-disable-next-line
   }, []);
 
   const [showModal, setShowModal] = useState(false);

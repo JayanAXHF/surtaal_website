@@ -3,12 +3,10 @@ import React from "react";
 const Teacher = (props) => {
   const { qualities } = props;
 
-  const br = "<br/>";
-
-  const qualitiesElement = qualities.map((quality) => {
+  const qualitiesElement = qualities.map((quality, i) => {
     const newQual = quality.replace("<br/>", "\n");
 
-    return <li>{newQual}</li>;
+    return <li key={i}>{newQual}</li>;
   });
 
   return (
@@ -28,7 +26,7 @@ const Teacher = (props) => {
         />
       </a>
       <div className="p-5">
-        <h5 className="mb-2 text-2xl tracking-wide text-left  font-bold  text-gray-900 dark:text-white">
+        <h5 className="mb-2 !text-left text-2xl tracking-wide  font-bold  text-gray-900 dark:text-white">
           {props.name}
         </h5>
 
@@ -36,7 +34,7 @@ const Teacher = (props) => {
         <div className="mb-3 text-left font-normal text-gray-700 dark:text-gray-400">
           <br />
 
-          <h2 className="text-2xl tracking-wide font-medium dark:text-white">
+          <h2 className="text-2xl !text-left tracking-wide font-medium dark:text-white">
             {" "}
             Qualifications:
           </h2>

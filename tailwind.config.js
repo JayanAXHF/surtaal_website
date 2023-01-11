@@ -4,7 +4,11 @@ module.exports = {
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    fontFamily: { main: "karla", secondary: "VT323" },
+    fontFamily: {
+      main: "karla",
+      secondary: "VT323",
+      tertiary: "Plus Jakarta Sans",
+    },
     listStyleType: {
       none: "none",
       disc: "disc",
